@@ -5,10 +5,12 @@ import {
   FormBtn,
 } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContacts, addMyContact } from 'redux/contactsSlice';
-import { nanoid } from 'nanoid';
+import { selectContacts } from 'redux/selectors';
+import { addContact } from 'redux/operations';
 import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
+// import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const schema = yup.object({
   name: yup
@@ -29,23 +31,24 @@ const schema = yup.object({
 
 export default function ContactForm() {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
 
   const handleSubmit = ({ name, number }, { resetForm }) => {
-    const isExist = contacts.find(contact => contact.name === name);
+    const isExist = contacts.find(
+      contact => contact.name.toLowerCase() === name.toLowerCase()
+    );
 
     if (isExist) {
-      alert(`${name} is already in contacts.`);
+      alert(`${name} is already in contacts`);
       return;
     }
 
     const contact = {
-      id: nanoid(),
       name,
       number,
     };
 
-    dispatch(addMyContact(contact));
+    dispatch(addContact(contact));
     resetForm();
   };
 
