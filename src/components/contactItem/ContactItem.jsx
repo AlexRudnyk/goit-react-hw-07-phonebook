@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/operations';
 import { ListItem, DeleteBtn, EditBtn } from './ContactItem.styled';
 import Modal from 'components/modal/Modal';
-import EditForm from 'components/editForm/EditForm';
+// import EditForm from 'components/editForm/EditForm';
 
 export const ContactItem = ({ contact }) => {
   const [showModal, setShowModal] = useState(false);
@@ -29,11 +29,7 @@ export const ContactItem = ({ contact }) => {
           </DeleteBtn>
         </div>
       </ListItem>
-      {showModal && (
-        <Modal onClose={toggleModal}>
-          <EditForm />
-        </Modal>
-      )}
+      {showModal && <Modal onClose={toggleModal}>{/* <EditForm /> */}</Modal>}
     </>
   );
 };
