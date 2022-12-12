@@ -15,3 +15,7 @@ export const ListItem = styled.li`
 export const DeleteBtn = styled.button`
   margin-left: 20px;
 `;
+
+export const EditBtn = styled.button`
+  margin-left: 20px;
+`;
