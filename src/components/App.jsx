@@ -5,7 +5,7 @@ import { AppTitle, ListTitle, Container } from './App.styled';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchContacts } from 'redux/operations';
-// import { RotatingLines } from 'react-loader-spinner';
+import { RotatingLines } from 'react-loader-spinner';
 import { selectError, selectIsLoading } from 'redux/selectors';
 
 export default function App() {
@@ -23,7 +23,7 @@ export default function App() {
       <ContactForm />
       <ListTitle>Contacts</ListTitle>
       <Filter />
-      {isLoading && !error && <b>Request in progress...</b>}
+      {isLoading && !error && <RotatingLines />}
       <ContactList />
     </Container>
   );
